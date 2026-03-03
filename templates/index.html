@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Adaptive AI Tutor{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="card shadow-sm border-0 app-shell">
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2 mb-4">
+          <div>
+            <h1 class="h3 mb-1">Adaptive AI Tutor</h1>
+            <p class="text-secondary mb-0">Professional learning assistant with level-based explanations</p>
+          </div>
+          <span class="badge text-bg-primary px-3 py-2">Flask + OpenRouter</span>
+        </div>
+
+        <form id="tutorForm" class="mb-4">
+          <div class="mb-3">
+            <label for="question" class="form-label">Your Question</label>
+            <textarea
+              id="question"
+              class="form-control"
+              rows="4"
+              placeholder="Ask any concept, topic, or doubt..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="level" class="form-label d-flex justify-content-between">
+              <span>Explanation Level</span>
+              <strong id="levelLabel">3</strong>
+            </label>
+            <input id="level" type="range" class="form-range" min="1" max="5" step="1" value="3" />
+            <div class="d-flex justify-content-between small text-secondary">
+              <span>Beginner</span>
+              <span>Expert</span>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button id="askBtn" type="submit" class="btn btn-primary px-4">Generate Answer</button>
+            <button id="clearBtn" type="button" class="btn btn-outline-secondary">Clear</button>
+          </div>
+        </form>
+
+        <div class="response-shell">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 mb-0 text-secondary">Tutor Response</h2>
+            <span id="status" class="status-pill">Idle</span>
+          </div>
+          <div id="response" class="response-box">Your answer will appear here...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
