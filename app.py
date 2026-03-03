@@ -45,7 +45,9 @@ def build_system_prompt(level_value: int) -> str:
     )
 
 
-def stream_tutor_response(client: OpenAI, question: str, level_value: int) -> Generator[str, None, None]:
+def stream_tutor_response(
+    client: OpenAI, question: str, level_value: int, max_tokens: int = 1000
+) -> Generator[str, None, None]:
     system_prompt = build_system_prompt(level_value)
 
     stream = client.chat.completions.create(
@@ -56,6 +58,7 @@ def stream_tutor_response(client: OpenAI, question: str, level_value: int) -> Ge
         ],
         temperature=0.7,
         stream=True,
+        max_tokens=max(100, min(max_tokens, 4000)),
     )
 
     for chunk in stream:
@@ -81,6 +84,7 @@ def create_app() -> Flask:
         payload = request.get_json(silent=True) or {}
         question = (payload.get("question") or "").strip()
         level = int(payload.get("level", 3))
+        max_tokens = int(payload.get("max_tokens", 1000))
 
         if not question:
             return jsonify({"error": "Question is required."}), 400
@@ -93,7 +97,7 @@ def create_app() -> Flask:
 
         def generate() -> Generator[str, None, None]:
             try:
-                for text in stream_tutor_response(client, question, level):
+                for text in stream_tutor_response(client, question, level, max_tokens):
                     yield text
             except Exception as exc:
                 logger.exception("Streaming failed")

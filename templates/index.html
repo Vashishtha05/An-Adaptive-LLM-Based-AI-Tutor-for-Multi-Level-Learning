@@ -15,33 +15,51 @@
           <span class="badge text-bg-primary px-3 py-2">Flask + OpenRouter</span>
         </div>
 
-        <form id="tutorForm" class="mb-4">
-          <div class="mb-3">
-            <label for="question" class="form-label">Your Question</label>
+        <form id="tutorForm" class="form-section mb-4">
+          <div class="mb-4">
+            <label for="question" class="form-label fw-semibold">Your Question</label>
             <textarea
               id="question"
-              class="form-control"
+              class="form-control form-input-enhanced"
               rows="4"
               placeholder="Ask any concept, topic, or doubt..."
               required
             ></textarea>
           </div>
 
-          <div class="mb-3">
-            <label for="level" class="form-label d-flex justify-content-between">
-              <span>Explanation Level</span>
-              <strong id="levelLabel">3</strong>
-            </label>
-            <input id="level" type="range" class="form-range" min="1" max="5" step="1" value="3" />
-            <div class="d-flex justify-content-between small text-secondary">
-              <span>Beginner</span>
-              <span>Expert</span>
+          <div class="settings-grid">
+            <div class="setting-card">
+              <label for="level" class="form-label fw-semibold d-flex justify-content-between align-items-center">
+                <span>📚 Explanation Level</span>
+                <span class="level-badge" id="levelLabel">3</span>
+              </label>
+              <input id="level" type="range" class="form-range slider-enhanced" min="1" max="5" step="1" value="3" />
+              <div class="d-flex justify-content-between small text-secondary mt-2">
+                <span>👶 Beginner</span>
+                <span>🧑‍🎓 Expert</span>
+              </div>
+            </div>
+
+            <div class="setting-card">
+              <label for="maxTokens" class="form-label fw-semibold d-flex justify-content-between align-items-center">
+                <span>⚡ Max Tokens</span>
+                <span class="token-badge" id="maxTokensLabel">1000</span>
+              </label>
+              <input id="maxTokens" type="range" class="form-range slider-enhanced" min="100" max="4000" step="100" value="1000" />
+              <div class="d-flex justify-content-between small text-secondary mt-2">
+                <span>Brief</span>
+                <span>Detailed</span>
+              </div>
             </div>
           </div>
 
-          <div class="d-flex flex-wrap gap-2">
-            <button id="askBtn" type="submit" class="btn btn-primary px-4">Generate Answer</button>
-            <button id="clearBtn" type="button" class="btn btn-outline-secondary">Clear</button>
+          <div class="button-group mt-4">
+            <button id="askBtn" type="submit" class="btn btn-primary btn-lg px-5 btn-elevated">
+              <span class="btn-icon">✨</span> Generate Answer
+            </button>
+            <button id="clearBtn" type="button" class="btn btn-outline-secondary btn-lg px-4">
+              <span class="btn-icon">🔄</span> Clear
+            </button>
           </div>
         </form>
 
