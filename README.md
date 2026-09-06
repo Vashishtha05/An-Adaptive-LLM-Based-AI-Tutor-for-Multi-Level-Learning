@@ -247,36 +247,6 @@ This allows MCP clients and agents to discover available functionality without r
 ├── .env
 └── README.md
 ```
-
----
-
-## 🔐 Security
-
-Never commit API keys to GitHub.
-
-Before publishing the project:
-
-1. Remove any hardcoded API keys.
-2. Load credentials through environment variables.
-3. Add `.env` to `.gitignore`.
-4. Clear notebook outputs containing sensitive information.
-5. Rotate any API key that may already have been exposed.
-
-Recommended configuration:
-
-```python
-import os
-from dotenv import load_dotenv
-from openai import OpenAI
-
-load_dotenv()
-
-client = OpenAI(
-    api_key=os.environ["OPENROUTER_API_KEY"],
-    base_url="https://openrouter.ai/api/v1",
-)
-```
-
 ---
 
 ## 🐛 Troubleshooting
@@ -317,14 +287,6 @@ Reconnect the MCP server and rerun the agent after confirming that the MCP schem
 
 ---
 
-## 📄 License
-
-No license has been specified for this project yet.
-
-Add an appropriate license before accepting external contributions or distributing the project publicly.
-
----
-
 ## 👨‍💻 Author
 
 **Vashishtha Verma**
@@ -332,4 +294,3 @@ Add an appropriate license before accepting external contributions or distributi
 * 🤖 Machine Learning & Generative AI
 * 🧠 Agentic AI Systems
 * 💻 Software Engineering & DSA
-* 🔌 Model Context Protocol (MCP)
